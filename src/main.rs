@@ -12,11 +12,11 @@ fn set_status(status: &str) {
 fn to_ordinal_string(number: u32) -> String {
     let str_num = number.to_string();
 
-    let ordinal = match number % 10 {
-        0 => "",
-        1 => "st",
-        2 => "nd",
-        3 => "rd",
+    let ordinal = match ((number / 10) % 10, number % 10) {
+        (1, _) => "th",
+        (_, 1) => "st",
+        (_, 2) => "nd",
+        (_, 3) => "rd",
         _ => "th",
     };
     str_num + ordinal
